@@ -1,0 +1,18 @@
+# Fdb version 4
+["pdflatex"] 1708721618.2708 "/Users/aaryan/Projects/kactl/content/kactl.tex" "kactl.pdf" "kactl" 1708721618.50892 2
+  "/Users/aaryan/Projects/kactl/content/kactl.tex" 1708721617.33497 958 99ab7be16efd845d1cadc570d6719527 ""
+  "/usr/local/texlive/2023basic/texmf-dist/fonts/tfm/public/cm/cmr9.tfm" 1136768653 1292 6b21b9c2c7bebb38aa2273f7ca0fb3af ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/base/exscale.sty" 1705352648 2581 8e0df574a0fdf7d67e300be743ad323e ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/extsizes/extreport.cls" 1137110130 23786 cbd79291aa0922c48a73753b97cabb5f ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/extsizes/size9.clo" 1137110130 6172 b9daf86befd6903b2699dddbd6fb97c1 ""
+  "/usr/local/texlive/2023basic/texmf-dist/web2c/texmf.cnf" 1697057529 41009 84b61f42d16d06bedb915f57aa2374cf ""
+  "/usr/local/texlive/2023basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1708679753 7535872 5eeba7be7adae3a32e84e4a3d055ae44 ""
+  "/usr/local/texlive/2023basic/texmf.cnf" 1678817979 628 bde3cc671e29677eea4172140533535c ""
+  "kactl.aux" 1708721618.26879 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "kactl.tex" 1708721617.33497 958 99ab7be16efd845d1cadc570d6719527 ""
+  "kactlpkg.sty" 0 -1 0 ""
+  (generated)
+  "kactl.aux"
+  "kactl.log"
+  "kactl.pdf"
+  (rewritten before read)
