@@ -2,7 +2,7 @@ run () {
 	ok=1
 	if [[ ! -f $1 || $1 -ot $1.cpp ]]
 	then
-		g++ -Wall -std=c++17 $1.cpp -O2 -o $1 -Wall -std=c++17 -Wextra -Wshadow || ok=0
+		g++ $1.cpp -O2 -o $1 -std=c++17 -Wall -Wextra -Wshadow -Wconversion -fsanitize=undefined,address || ok=0
 	fi
 	[[ $ok -eq 1 ]] && ./$1
 }
