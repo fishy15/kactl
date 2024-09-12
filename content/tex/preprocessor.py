@@ -145,6 +145,19 @@ def processwithcomments(caption, instream, outstream, listingslang):
         nsource = nsource.rstrip() + source[end:]
     nsource = nsource.strip()
 
+    nsource_lines = nsource.split('\n')
+    for i in range(0, len(nsource_lines), 5):
+        nend = min(len(nsource_lines), i+5)
+        segment = '\n'.join(nsource_lines[i:nend])
+
+        hash_script = 'hash'
+        p = subprocess.Popen(['sh', 'content/contest/%s.sh' % hash_script], stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8")
+        hsh, _ = p.communicate(segment)
+        hsh = hsh.split(None, 1)[0]
+        nsource_lines[i] += f' // {hsh}'
+    nsource = '\n'.join(nsource_lines)
+    print(nsource)
+
     if listingslang in ['C++', 'Java']:
         hash_script = 'hash'
         p = subprocess.Popen(['sh', 'content/contest/%s.sh' % hash_script], stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8")
