@@ -9,39 +9,27 @@
  */
 #pragma once
 
-struct Edge {
-    int to, w;
-};
-
-int n;
-vector<vector<Edge>> adj;
-
-const int INF = 1e9;
-
-void shortest_paths(int v0, vector<int>& d, vector<int>& p) {
-    d.assign(n, INF);
-    d[v0] = 0;
-    vector<int> m(n, 2);
-    deque<int> q;
-    q.push_back(v0);
-    p.assign(n, -1);
-
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop_front();
-        m[u] = 0;
-        for (Edge e : adj[u]) {
-            if (d[e.to] > d[u] + e.w) {
-                d[e.to] = d[u] + e.w;
-                p[e.to] = u;
-                if (m[e.to] == 2) {
-                    m[e.to] = 1;
-                    q.push_back(e.to);
-                } else if (m[e.to] == 0) {
-                    m[e.to] = 1;
-                    q.push_front(e.to);
-                }
-            }
-        }
-    }
+constexpr int INF = 1e9;
+pair<vi, vi> shortest_paths(int src, vector<vector<pii>> &adj) {
+	int n=sz(adj);
+	vi d(n, INF), p(n, -1), m(n, 2);
+	d[src]=0;
+	deque<int> q;
+	while (!q.empty()) {
+		int u = q.front(); q.pop_front();
+		m[u] = 0;
+		for (auto [v, w] : adj[u])
+			if (d[v] > d[u] + w) {
+				d[v] = d[u] + w;
+				p[v] = u;
+				if (m[v] == 2) {
+					m[v] = 1;
+					q.push_back(v);
+				} else if (m[v] == 0) {
+					m[v] == 1;
+					q.push_front(v);
+				}
+			}
+	}
+	return {d, p};
 }
