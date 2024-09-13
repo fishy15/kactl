@@ -154,9 +154,9 @@ def processwithcomments(caption, instream, outstream, listingslang):
         p = subprocess.Popen(['sh', 'content/contest/%s.sh' % hash_script], stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8")
         hsh, _ = p.communicate(segment)
         hsh = hsh.split(None, 1)[0]
-        nsource_lines[i] += f' // {hsh}'
+        hsh = hsh[:3] # only keep first three 
+        nsource_lines[i] += f'//{hsh}'
     nsource = '\n'.join(nsource_lines)
-    print(nsource)
 
     if listingslang in ['C++', 'Java']:
         hash_script = 'hash'
