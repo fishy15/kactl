@@ -13,11 +13,11 @@
 
 #include "../data-structures/UnionFindRollback.h"
 
-struct Edge { int a, b; ll w; };
+struct Edge { int a, b; ll w{}; };
 struct Node { /// lazy skew heap node
 	Edge key;
-	Node *l, *r;
-	ll delta;
+	Node *l=0, *r=0;
+	ll delta{};
 	void prop() {
 		key.w += delta;
 		if (l) l->delta += delta;

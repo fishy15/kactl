@@ -4,15 +4,11 @@
  * License: CC0
  * Source: folklore
  * Description: Delete from a data structure given insertions and roll-backs
+ * ds needs: void push(U u), void pop(), Q query()
  * Time: $O(T(n) log(n))$
  */
 #pragma once
 
-struct ds {
-    void push(U u);
-    void pop();
-    Q query();
-};
 template<typename D, typename U, typename Q>
 struct offline_deletion : public D {
     vector<Q> ans;
