@@ -38,7 +38,3 @@ struct Point {
 	friend ostream& operator<<(ostream& os, P p) {
 		return os << "(" << p.x << "," << p.y << ")"; }
 };
-
-sort(all(v), [](P a, P b) {
-	return a.half() == b.half() ? a.cross(b) > 0 : a.half() < b.half();
-});

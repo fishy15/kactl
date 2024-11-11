@@ -1,6 +1,6 @@
 /**
- * Author: Alpha_Q
- * Date: 2024-05-21
+ * Author: Mark Wen
+ * Date: 2024-11-11
  * License: Unknown
  * Source: https://codeforces.com/blog/entry/72815
  * Description: Sorts points radially across the origin.
@@ -12,10 +12,10 @@
 
 #include "Point.h"
 
-bool up(P p) {
- 	return p.y > 0 or (p.y == 0 and p.x >= 0);
+template<class P>
+void anglesort(vector<P> &v, P p=P(0, 0)) {
+    sort(all(v), [p](P a, P b) {
+        a = a - p, b = b - p;
+        return a.half() == b.half() ? a.cross(b) > 0 : a.half() < b.half();
+    });
 }
-
-sort(v.begin(), v.end(), [](P a, P b) {
- 	return up(a) == up(b) ? a.x * b.y > a.y * b.x : up(a) < up(b);
-});
