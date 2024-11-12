@@ -239,6 +239,8 @@ def print_header(data, outstream):
         font_size = 8
     if header_length > 125:
         font_size = 6
+    if header_length > 150:
+        font_size = 5
     output = r"\hspace{3mm}\textbf{" + output + "}"
     output = "\\fontsize{%d}{%d}" % (font_size, font_size) + output
     print(output, file=outstream)
