@@ -2,25 +2,20 @@
  * Author: Aaryan Prakash
  * Date: 2024-11-11
  * License: Unknown
- * Source: https://codeforces.com/blog/entry/53170, https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Trees%20(10)/HLD%20(10.3).h
+ * Source: https://codeforces.com/blog/entry/53170, Benq
  * Description: Decomposes a tree into vertex disjoint heavy paths and light
- * edges such that the path from any leaf to the root contains at most log(n)
- * light edges. Takes as input the full adjacency list. op_edges being true 
- * means that values are stored in the edges, as opposed to the nodes.
- * Time: O(\log N) * op
+ * edges such that the path from any leaf to the root contains at most $\log(n)$
+ * light edges. Takes as input the full adjacency list. op edges being
+ * true means that values are stored in the edges, as opposed to the nodes.
+ * Time: $O(\log N)$
  * Status: Used before
  */
 #pragma once
 
 template<bool op_edges = false>
 struct hld {
-    vector<vector<int>> adj;
-    vector<int> par;
-    vector<int> size;
-    vector<int> in;
-    vector<int> head;
-    vector<int> d;
-
+    vector<vi> adj;
+    vi par, size, in, head, d
     hld(int n) : adj(n), par(n), size(n), in(n), head(n), d(n) {}
 
     void add_edge(int u, int v) {

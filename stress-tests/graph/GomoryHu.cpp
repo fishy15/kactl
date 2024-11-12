@@ -10,7 +10,7 @@ void test(int N, int mxFlow, int iters) {
 	for (int it = 0; it < iters; it++) {
 		int n = rand()%N+1;
 		int m = rand()%(N*N);
-		vector<array<ll, 3>> edges;
+		vector<Edge> edges;
 		vector<vi> mat(n, vi(n));
 		rep(it,0,m) {
 			int i = rand() % n;

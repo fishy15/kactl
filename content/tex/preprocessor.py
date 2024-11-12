@@ -191,6 +191,7 @@ def processwithcomments(caption, instream, outstream, listingslang):
         out.append(nsource)
         out.append(r"\end{lstlisting}")
 
+    print('\n'.join(out))
     for line in out:
         print(line, file=outstream)
 
