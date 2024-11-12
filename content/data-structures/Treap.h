@@ -13,7 +13,7 @@
 struct Node {
 	Node *l = 0, *r = 0;
 	int val, y, c = 1;
-	Node(int val) : val(val), y(rand()) {}
+	Node(int v) : val(v), y(rand()) {}
 	void recalc();
 };
 

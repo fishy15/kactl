@@ -6,6 +6,6 @@ Unrolling.h
 // ModSqrt.h
 Hashing-codeforces.h
 // NumberTheoreticTransform.h
-// MoQueries.h
+MoQueries.h
 LazySegmentTree.h
 SegmentTree.h
