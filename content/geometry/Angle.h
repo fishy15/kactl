@@ -17,7 +17,7 @@
 struct Angle {
 	int x, y;
 	int t;
-	Angle(int x, int y, int t=0) : x(x), y(y), t(t) {}
+	Angle(int _x, int _y, int _t=0) : x(_x), y(_y), t(_t) {}
 	Angle operator-(Angle b) const { return {x-b.x, y-b.y, t}; }
 	int half() const {
 		assert(x || y);
