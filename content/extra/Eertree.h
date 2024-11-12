@@ -24,7 +24,7 @@ struct eertree {
     eertree(const string &_s) : s(_s), tree(sz(s)+2), suff(2), num(2)  {
         tree[1].len = -1, tree[1].sufflink = 1;
         tree[2].len = 0, tree[2].sufflink = 1;
-        tree[1].edges.push_back(2);
+        tree[1].edges.pb(2);
         rep(i, 0, sz(s)) add(i);
     }
 
@@ -51,7 +51,7 @@ struct eertree {
 
         if (tree[num].len == 1) {
             tree[num].sufflink = 2;
-            tree[2].edges.push_back(num);
+            tree[2].edges.pb(num);
             return;
         }
 
@@ -60,7 +60,7 @@ struct eertree {
             cur_len = tree[cur].len;
             if (pos - 1 - cur_len > -1 && s[pos - 1 - cur_len] == s[pos]) {
                 tree[num].sufflink = tree[cur].nxt[c];
-                tree[tree[cur].nxt[c]].edges.push_back(num);
+                tree[tree[cur].nxt[c]].edges.pb(num);
                 break;
             }
         }

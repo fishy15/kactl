@@ -15,7 +15,7 @@ struct update {
 template<typename D, typename U>
 struct noam : public D {
     vector<U> s;
-    void push(const U &u) { D::push(u); s.push_back(u); }
+    void push(const U &u) { D::push(u); s.pb(u); }
     void pop() {
         auto i = s.end(); int c = 0;
         do {

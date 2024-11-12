@@ -16,7 +16,7 @@ struct FT2 {
 	vector<vi> ys; vector<FT> ft;
 	FT2(int limx) : ys(limx) {}
 	void fakeUpdate(int x, int y) {
-		for (; x < sz(ys); x |= x + 1) ys[x].push_back(y);
+		for (; x < sz(ys); x |= x + 1) ys[x].pb(y);
 	}
 	void init() {
 		for (vi& v : ys) sort(all(v)), ft.emplace_back(sz(v));

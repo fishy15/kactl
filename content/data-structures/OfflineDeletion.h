@@ -21,7 +21,7 @@ struct offline_deletion : public D {
     void update(int i, int l, int r, int L, int R, U u) {
         if (r < L || R < l) return;
         if (L <= l && r <= R) {
-            updates[i].push_back(u); return;
+            updates[i].pb(u); return;
         }
         int m = (l + r) / 2;
         update(2 * i + 1, l, m, L, R, u);

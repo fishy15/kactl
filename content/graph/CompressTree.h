@@ -23,7 +23,7 @@ vpi compressTree(LCA& lca, const vi& subset) {
 	int m = sz(li)-1;
 	rep(i,0,m) {
 		int a = li[i], b = li[i+1];
-		li.push_back(lca.lca(a, b));
+		li.pb(lca.lca(a, b));
 	}
 	sort(all(li), cmp);
 	li.erase(unique(all(li)), li.end());

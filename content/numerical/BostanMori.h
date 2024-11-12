@@ -15,7 +15,7 @@ num BostanMori(poly p, poly q, ll k) {
 	for (int i = 1; i < sz(nq); i += 2) nq[i] = num(0) - nq[i];
 	poly u = p * nq, v = q * nq;
 	poly nu, nv;
-	for (int i = k % 2; i < sz(u); i += 2) nu.push_back(u[i]);
-	for (int i = 0; i < sz(v); i += 2) nv.push_back(v[i]);
+	for (int i = k % 2; i < sz(u); i += 2) nu.pb(u[i]);
+	for (int i = 0; i < sz(v); i += 2) nv.pb(v[i]);
 	return BostanMori(nu, nv, k / 2);
 };

@@ -15,12 +15,12 @@
 template<bool op_edges = false>
 struct hld {
     vector<vi> adj;
-    vi par, size, in, head, d
+    vi par, size, in, head, d;
     hld(int n) : adj(n), par(n), size(n), in(n), head(n), d(n) {}
 
     void add_edge(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
 
     void dfs_size(int v = 0, int p = 0) {

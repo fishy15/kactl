@@ -25,15 +25,15 @@ vector<P> minkowski(vector<P> p, vector<P> q) {
     reorder_polygon(p);
     reorder_polygon(q);
 
-    p.push_back(p[0]);
-    p.push_back(p[1]);
-    q.push_back(q[0]);
-    q.push_back(q[1]);
+    p.pb(p[0]);
+    p.pb(p[1]);
+    q.pb(q[0]);
+    q.pb(q[1]);
 
     vector<P> result;
     int i = 0, j = 0;
     while (i < sz(p) - 2 || j < sz(q) - 2) {
-        result.push_back(p[i] + q[j]);
+        result.pb(p[i] + q[j]);
         auto cross = (p[i + 1] - p[i]).cross(q[j + 1] - q[j]);
         if (cross >= 0 && i < sz(p) - 2) ++i;
         if (cross <= 0 && j < sz(q) - 2) ++j;

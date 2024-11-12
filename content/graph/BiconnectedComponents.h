@@ -29,17 +29,17 @@ void bicomps(vector<vector<pii>> &ed, F f) {
 			if (num[y]) {
 				top = min(top, num[y]);
 				if (num[y] < me)
-					st.push_back(e);
+					st.pb(e);
 			} else {
 				int si = sz(st);
 				int up = self(self, y, e);
 				top = min(top, up);
 				if (up == me) {
-					st.push_back(e);
+					st.pb(e);
 					f(vi(st.begin() + si, st.end()));
 					st.resize(si);
 				}
-				else if (up < me) st.push_back(e);
+				else if (up < me) st.pb(e);
 				else { /* e is a bridge */ }
 			}
 		}
