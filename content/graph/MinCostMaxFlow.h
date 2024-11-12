@@ -10,7 +10,7 @@
  */
 #pragma once
 
-// #include <bits/extc++.h> /// include-line, keep-include
+#include <bits/extc++.h>
 
 const ll INF = numeric_limits<ll>::max() / 4;
 
@@ -25,7 +25,7 @@ struct MCMF {
 	vector<ll> dist, pi;
 	vector<edge*> par;
 
-	MCMF(int N) : N(N), ed(N), seen(N), dist(N), pi(N), par(N) {}
+	MCMF(int _N) : N(_N), ed(N), seen(N), dist(N), pi(N), par(N) {}
 
 	void addEdge(int from, int to, ll cap, ll cost) {
 		if (from == to) return;

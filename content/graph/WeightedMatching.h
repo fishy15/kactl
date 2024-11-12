@@ -25,7 +25,7 @@ pair<int, vi> hungarian(const vector<vi> &a) {
 		vector<bool> done(m + 1);
 		do { // dijkstra
 			done[j0] = true;
-			int i0 = p[j0], j1, delta = INT_MAX;
+			int i0 = p[j0], j1 = -1, delta = INT_MAX;
 			rep(j,1,m) if (!done[j]) {
 				auto cur = a[i0 - 1][j - 1] - u[i0] - v[j];
 				if (cur < dist[j]) dist[j] = cur, pre[j] = j0;

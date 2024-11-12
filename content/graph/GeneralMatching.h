@@ -27,8 +27,8 @@ vector<pii> generalMatching(int N, vector<pii>& ed) {
 		rep(i,0,N) {
 			mat[i].resize(M);
 			rep(j,N,M) {
-				int r = rand() % mod;
-				mat[i][j] = r, mat[j][i] = (mod - r) % mod;
+				int rr = rand() % mod;
+				mat[i][j] = rr, mat[j][i] = (mod - rr) % mod;
 			}
 		}
 	} while (matInv(A = mat) != M);

@@ -64,10 +64,10 @@ pair<ll, vi> dmst(int n, int r, vector<Edge>& g) {
 		rep(i,0,qi) in[uf.find(Q[i].b)] = Q[i];
 	}
 
-	for (auto& [u,t,comp] : cycs) { // restore sol (optional)
+	for (auto& [u,t,cc] : cycs) { // restore sol (optional)
 		uf.rollback(t);
 		Edge inEdge = in[u];
-		for (auto& e : comp) in[uf.find(e.b)] = e;
+		for (auto& e : cc) in[uf.find(e.b)] = e;
 		in[uf.find(inEdge.b)] = inEdge;
 	}
 	rep(i,0,n) par[i] = in[i].a;
