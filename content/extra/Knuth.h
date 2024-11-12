@@ -13,22 +13,13 @@
  */
 #pragma once
 
-int solve() {
-    int N;
-    ... // read N and input
-    int dp[N][N], opt[N][N];
-
-    auto C = [&](int i, int j) {
-        ... // Implement cost function C.
-    };
-
-    for (int i = 0; i < N; i++) {
-        opt[i][i] = i;
-        ... // Initialize dp[i][i] according to the problem
-    }
-
-    for (int i = N-2; i >= 0; i--) {
-        for (int j = i+1; j < N; j++) {
+template<class C>
+int solve(int n, C c) {
+    vector dp(n, vi(n));
+    auto opt = dp;
+    rep(i, 0, n) opt[i][i] = i; // initialize dp[i][i] here
+    for (int i = n-2; i >= 0; i--) {
+        rep(j, i+1, n) {
             int mn = INT_MAX;
             int cost = C(i, j);
             for (int k = opt[i][j-1]; k <= min(j-1, opt[i+1][j]); k++) {
@@ -40,6 +31,5 @@ int solve() {
             dp[i][j] = mn; 
         }
     }
-
-    return dp[0][N-1];
+    return dp[0][n-1];
 }

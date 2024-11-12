@@ -9,6 +9,8 @@
  */
 #pragma once
 
+#include "ModInt.h"
+
 struct M {
     const static int n = 20;
     mi m[n][n]; 

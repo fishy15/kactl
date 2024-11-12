@@ -9,40 +9,41 @@
  */
 #pragma once
 
-vector<int> adj[MAXN];
-int sz[MAXN];
-bool vis[MAXN];
+struct CD {
+    vector<vector<int>> adj;
+    vector<int> size, vis;
 
-int dfs_sz(int v, int p) {
-    sz[v] = 1;
-    for (int e : adj[v]) {
-        if (e != p && !vis[e]) {
-            sz[v] += dfs_sz(e, v);
+    int dfs_size(int v, int p) {
+        size[v] = 1;
+        for (int e : adj[v]) {
+            if (e != p && !vis[e]) {
+                size[v] += dfs_size(e, v);
+            }
+        }
+        return size[v];
+    }
+
+    int dfs_root(int v, int p, int n) {
+        for (int e : adj[v]) {
+            if (e != p && !vis[e] && 2 * size[e] > n) {
+                return dfs_root(e, v, n);
+            }
+        }
+        return v;
+    }
+
+    void centroid(int v, int p) {
+        dfs_size(v, p);
+        int c = dfs_root(v, p, size[v]);
+        vis[c] = true;
+
+        // do processing here
+        // make sure to ignore visited nodes 
+
+        for (int e : adj[c]) {
+            if (!vis[e]) {
+                centroid(e, c);
+            }
         }
     }
-    return sz[v];
-}
-
-int dfs_root(int v, int p, int n) {
-    for (int e : adj[v]) {
-        if (e != p && !vis[e] && 2 * sz[e] > n) {
-            return dfs_root(e, v, n);
-        }
-    }
-    return v;
-}
-
-void centroid(int v, int p) {
-    dfs_sz(v, -1);
-    int c = dfs_root(v, -1, sz[v]);
-    vis[c] = true;
-
-    // do processing here
-    // make sure to ignore visited nodes 
-
-    for (int e : adj[c]) {
-        if (!vis[e]) {
-            centroid(e, c);
-        }
-    }
-}
+};

@@ -1,92 +1,68 @@
 /**
- * Author: fishy15
- * Date: 2024-02-23
+ * Author: Dylan Smith
+ * Date: 2024-11-11
  * License: Unknown
  * Source: Suffix automaton
  * Description: Builds suffix automaton for a string.
  * Each node corresponds to a class of substrings
  * which end at the same indices.
  * Time: O(n)
- * Status: stress-tested
+ * Status: tested on String Matching (CSES)
  */
 #pragma once
 
-struct suffix_automaton {
-    struct node {
-        int len;
-        int link;
-        ll cnt;
-        array<int, 26> nxt;
-        node() : len{0}, link{-1}, cnt{1} {
-            nxt.fill(-1);
-        }
+struct SuffixAutomaton {
+    struct Node {
+        int len = 0, lnk = 0;
+        int nxt[26];
     };
-
-    int root;
-    int last;
-
-    suffix_automaton() {
-        root = last = new_node();
-        buf[root].cnt = 0;
+    string s;
+    vector<Node> t; int last = 0;
+    SuffixAutomaton(string _s = "") {
+        t.pb({0, -1, {}});
+        for (char c : _s) add(c);
     }
-
-    suffix_automaton(const string &s) : suffix_automaton{} {
-        for (auto c : s) {
-            add_char(c);
-        }
-        compute_counts();
+    void add(int c) { s += (char) c; c -= 'a'; 
+        int u = last; int v = last = sz(t);
+        t.pb({t[u].len + 1, 0, {}});
+        while (u >= 0 && !t[u].nxt[c])
+            t[u].nxt[c] = v, u = t[u].lnk;
+        if (u == -1) return;
+        int q = t[u].nxt[c];
+        if (t[u].len + 1 == t[q].len)
+            { t[v].lnk = q; return; }
+        int cpy = sz(t); t.pb(t[q]);
+        t[cpy].len = t[u].len + 1;
+        while (u >= 0 && t[u].nxt[c] == q)
+            t[u].nxt[c] = cpy, u = t[u].lnk;
+        t[v].lnk = t[q].lnk = cpy;
     }
-
-    void add_char(char nxt_char) {
-        auto c = nxt_char - 'a';
-        auto cur = new_node();
-        buf[cur].len = buf[last].len + 1;
-
-        auto p = last;
-        while (p != -1 && buf[p].nxt[c] == -1) {
-            buf[p].nxt[c] = cur;
-            p = buf[p].link;
-        }
-
-        if (p == -1) {
-            buf[cur].link = 0;
-        } else {
-            auto q = buf[p].nxt[c];
-            if (buf[p].len + 1 == buf[q].len) {
-                buf[cur].link = q;
-            } else {
-                auto clone = new_node(buf[q]);
-                buf[clone].len = buf[p].len + 1;
-                buf[clone].cnt = 0;
-                while (p != -1 && buf[p].nxt[c] == q) {
-                    buf[p].nxt[c] = clone;
-                    p = buf[p].link;
-                }
-                buf[q].link = buf[cur].link = clone;
-            }
-        }
-        
-        last = cur;
+    vi cnt() {
+        vi res(sz(t), 0);
+        int cur = 0;
+        for (char c : s)
+            res[cur = t[cur].nxt[c - 'a']]++;
+        vector<pii> srt;
+        rep(i, 1, sz(t))
+            srt.pb({-t[i].len, i});
+        sort(all(srt));
+        for (auto &p : srt)
+            res[t[p.second].lnk] += res[p.second];
+        return res;
     }
-
-    void compute_counts() {
-        vector<int> idx(buf.size());
-        iota(idx.begin(), idx.end(), 0);
-        sort(idx.begin(), idx.end(), [this](int i, int j) { return buf[i].len > buf[j].len; });
-        for (auto i : idx) {
-            if (buf[i].link != -1) {
-                buf[buf[i].link].cnt += buf[i].cnt;
-            }
+    vi first() {
+        vi res(sz(t), sz(s));
+        int cur = 0;
+        for (int i = 0; i < sz(s); i++) {
+            cur = t[cur].nxt[s[i] - 'a'];
+            res[cur] = min(res[cur], i);
         }
-
-        // dont care about empty string
-        buf[root].cnt = 0;
-    }
-
-    vector<node> buf;
-    template<typename ...Args>
-    int new_node(Args ...args) {
-        buf.emplace_back(args...);
-        return buf.size() - 1;
+        vector<pii> srt;
+        rep(i, 1, sz(t))
+            srt.pb({-t[i].len, i});
+        sort(all(srt));
+        for (auto &p : srt)
+            res[t[p.second].lnk] = min(res[t[p.second].lnk], res[p.second]);
+        return res;
     }
 };

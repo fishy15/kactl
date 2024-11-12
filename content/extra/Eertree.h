@@ -10,57 +10,59 @@
  */
 #pragma once
 
-struct Node {
-	int nxt[26], sufflink;
-	ll len, cnt;
-	vector<int> edges;
-} tree[303030];
+struct eertree {
+    struct node {
+        array<int, 26> nxt;
+        int sufflink, len, cnt;
+        vector<int> edges;
+    };
 
-string s;
-int suff, num;
-ll ans = 0;
+    string s;
+    vector<node> tree;
+    int suff, num;
 
-void add_letter(int pos) {
-	int curr = suff, curr_len = 0;
-	int letter = s[pos] - 'a';
+    eertree(const string &_s) : s(_s), tree(sz(s)+2), suff(2), num(2)  {
+        tree[1].len = -1, tree[1].sufflink = 1;
+        tree[2].len = 0, tree[2].sufflink = 1;
+        tree[1].edges.push_back(2);
+        rep(i, 0, sz(s)) add(i);
+    }
 
-	while (true) {
-		curr_len = tree[curr].len;
-		if (pos - 1 - curr_len > -1 && s[pos - 1 - curr_len] == s[pos]) break;
-		curr = tree[curr].sufflink;
-	}
+    void add(int pos) {
+        int cur = suff, cur_len = 0;
+        char c = s[pos];
 
-	if (tree[curr].nxt[letter]) {
-		suff = tree[curr].nxt[letter];
-		tree[suff].cnt++;
-		return;
-	}
+        while (true) {
+            cur_len = tree[cur].len;
+            if (pos - 1 - cur_len > -1 && s[pos - 1 - cur_len] == s[pos]) break;
+            cur = tree[cur].sufflink;
+        }
 
-	suff = ++num;
-	tree[num].len = tree[curr].len + 2;
-	tree[num].cnt = 1;
-	tree[curr].nxt[letter] = num;
+        if (tree[cur].nxt[c]) {
+            suff = tree[cur].nxt[c];
+            tree[suff].cnt++;
+            return;
+        }
 
-	if (tree[num].len == 1) {
-		tree[num].sufflink = 2;
-		tree[2].edges.push_back(num);
-		return;
-	}
+        suff = ++num;
+        tree[num].len = tree[cur].len + 2;
+        tree[num].cnt = 1;
+        tree[cur].nxt[c] = num;
 
-	while (true) {
-		curr = tree[curr].sufflink;
-		curr_len = tree[curr].len;
-		if (pos - 1 - curr_len > -1 && s[pos - 1 - curr_len] == s[pos]) {
-			tree[num].sufflink = tree[curr].nxt[letter];
-			tree[tree[curr].nxt[letter]].edges.push_back(num);
-			break;
-		}
-	}
-}
+        if (tree[num].len == 1) {
+            tree[num].sufflink = 2;
+            tree[2].edges.push_back(num);
+            return;
+        }
 
-void init() {
-	num = 2, suff = 2;
-	tree[1].len = -1, tree[1].sufflink = 1;
-	tree[2].len = 0, tree[2].sufflink = 1;
-	tree[1].edges.push_back(2);
-}
+        while (true) {
+            cur = tree[cur].sufflink;
+            cur_len = tree[cur].len;
+            if (pos - 1 - cur_len > -1 && s[pos - 1 - cur_len] == s[pos]) {
+                tree[num].sufflink = tree[cur].nxt[c];
+                tree[tree[cur].nxt[c]].edges.push_back(num);
+                break;
+            }
+        }
+    }
+};

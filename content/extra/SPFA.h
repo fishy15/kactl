@@ -26,7 +26,7 @@ pair<vi, vi> shortest_paths(int src, vector<vector<pii>> &adj) {
 					m[v] = 1;
 					q.push_back(v);
 				} else if (m[v] == 0) {
-					m[v] == 1;
+					m[v] = 1;
 					q.push_front(v);
 				}
 			}

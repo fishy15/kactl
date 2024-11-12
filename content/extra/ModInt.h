@@ -1,3 +1,16 @@
+/**
+ * Author: fishy15
+ * Date: 2024-11-11
+ * Source: Modified from other templates
+ * Description: all operations just work, MOD should fit in int
+ * License: Unknown
+ * Time: constant for operations, O(log e) for pow
+ * Status: used very often
+ */
+#pragma once
+
+constexpr int MOD = 1e9+7;
+
 struct mi {
     int v;
     mi() : mi(0) {}
