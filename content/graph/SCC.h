@@ -34,6 +34,6 @@ template<class G, class F> vi scc(G& g, F f) {
         }
         return val[j] = low;
     };
-	rep(i,0,n) if (comp[i] < 0) dfs(i, g, f);
+	rep(i,0,n) if (comp[i] < 0) dfs(dfs, i, g, f);
     return comp;
 }
