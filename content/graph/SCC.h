@@ -23,7 +23,6 @@ template<class G, class F> vi scc(G& g, F f) {
         int low = val[j] = ++t, x; z.pb(j);
         for (auto e : g[j]) if (comp[e] < 0)
             low = min(low, val[e] ?: self(self,e,g,f));
-
         if (low == val[j]) {
             do {
                 x = z.back(); z.pop_back();
