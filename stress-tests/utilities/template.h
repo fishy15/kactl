@@ -4,6 +4,7 @@ using namespace std;
 #define rep(i, from, to) for (int i = from; i < (to); ++i)
 #define all(x) x.begin(), x.end()
 #define sz(x) (int)(x).size()
+#define pb push_back
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef vector<int> vi;

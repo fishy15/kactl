@@ -24,15 +24,15 @@ void test(int N, int mxFlow, int iters) {
 		auto calc = [&](int s, int t) {
 			Dinic flow(n);
 			for (auto e : edges) {
-				flow.addEdge((int)e[0], (int)e[1], e[2], e[2]);
+				flow.addEdge(e.from, e.to, e.cap, e.cap);
 			}
 			return flow.calc(s, t);
 		};
 		vector<Edge> gomoryHuTree = gomoryHu(n, edges);
 		vector<vector<array<int, 2>>> adj(n);
 		for (auto e : gomoryHuTree) {
-			adj[e[0]].push_back({(int)e[1], (int)e[2]});
-			adj[e[1]].push_back({(int)e[0], (int)e[2]});
+			adj[e.from].push_back({e.to, (int) e.cap});
+			adj[e.to].push_back({e.from, (int) e.cap});
 		}
 		auto dfs = make_y_combinator([&](auto dfs, int start, int cur, int p, int mn) -> void {
 			if (start != cur) {
@@ -49,7 +49,7 @@ void test(int N, int mxFlow, int iters) {
 		if (n >= 2) {
 			ll minCut = LLONG_MAX;
 			for (auto e : gomoryHuTree) {
-				minCut = min(minCut, e[2]);
+				minCut = min(minCut, e.cap);
 			}
 			auto mat2 = mat;
 			auto pa = globalMinCut(mat2);
