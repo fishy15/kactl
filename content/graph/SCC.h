@@ -15,25 +15,27 @@
  */
 #pragma once
 
-template<class G, class F> vi scc(G& g, F f) {
-	int n = sz(g);
-    vi val(n, 0), comp(n, -1), z, cont;
-    int t=0, ncomps=0;
-    auto dfs = [&](auto &&self, int j) -> int {
-        int low = val[j] = ++t, x; z.pb(j);
-        for (auto e : g[j]) if (comp[e] < 0)
-            low = min(low, val[e] ?: self(self,e,g,f));
-        if (low == val[j]) {
+template<class F> vi scc(const vector<vi> &adj, F f) {
+    int n = sz(adj);
+    vi val(n), comp(n, -1), z, cont;
+    int time = 0, ncomps = 0;
+    auto dfs = [&](auto &&self, int u) -> int {
+        int low = val[u] = ++time, x; z.push_back(u);
+        for (auto e : adj[u]) if (comp[e] < 0)
+            low = min(low, val[e] ?: self(self, e));
+        if (low == val[u]) {
             do {
                 x = z.back(); z.pop_back();
                 comp[x] = ncomps;
-                cont.pb(x);
-            } while (x != j);
+                cont.push_back(x);
+            } while (x != u);
             f(cont); cont.clear();
             ncomps++;
         }
-        return val[j] = low;
+        return val[u] = low;
     };
-	rep(i,0,n) if (comp[i] < 0) dfs(dfs, i, g, f);
+    rep(i, 0, n) {
+        if (comp[i] < 0) dfs(dfs, i);
+    }
     return comp;
 }
