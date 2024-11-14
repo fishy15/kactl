@@ -11,25 +11,25 @@
 #pragma once
 
 vector<pii> pruefer_decode(const vi &code) {
-    int n = sz(code) + 2;
-    vi degree(n, 1);
-    for (int i : code)
-        degree[i]++;
+	int n = sz(code) + 2;
+	vi degree(n, 1);
+	for (int i : code)
+		degree[i]++;
 
-    set<int> leaves;
-    rep(i, 0, n)
-        if (degree[i] == 1)
-            leaves.insert(i);
+	set<int> leaves;
+	rep(i, 0, n)
+		if (degree[i] == 1)
+			leaves.insert(i);
 
-    vector<pii> edges;
-    for (int v : code) {
-        int leaf = *leaves.begin();
-        leaves.erase(leaves.begin());
+	vector<pii> edges;
+	for (int v : code) {
+		int leaf = *leaves.begin();
+		leaves.erase(leaves.begin());
 
-        edges.emplace_back(leaf, v);
-        if (--degree[v] == 1)
-            leaves.insert(v);
-    }
-    edges.emplace_back(*leaves.begin(), n-1);
-    return edges;
+		edges.emplace_back(leaf, v);
+		if (--degree[v] == 1)
+			leaves.insert(v);
+	}
+	edges.emplace_back(*leaves.begin(), n-1);
+	return edges;
 }

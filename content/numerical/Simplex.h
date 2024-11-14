@@ -59,7 +59,7 @@ struct LPSolver {
 			rep(i,0,m) {
 				if (D[i][s] <= eps) continue;
 				if (r == -1 || MP(D[i][n+1] / D[i][s], B[i])
-				             < MP(D[r][n+1] / D[r][s], B[r])) r = i;
+                     < MP(D[r][n+1] / D[r][s], B[r])) r = i;
 			}
 			if (r == -1) return false;
 			pivot(r, s);

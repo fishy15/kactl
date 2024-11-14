@@ -31,7 +31,7 @@ struct Quad {
 
 bool circ(P p, P a, P b, P c) { // is p in the circumcircle?
 	lll p2 = p.dist2(), A = a.dist2()-p2,
-	    B = b.dist2()-p2, C = c.dist2()-p2;
+		B = b.dist2()-p2, C = c.dist2()-p2;
 	return p.cross(a,b)*C + p.cross(b,c)*A + p.cross(c,a)*B > 0;
 }
 Q makeEdge(P orig, P dest) {
@@ -68,7 +68,7 @@ pair<Q,Q> rec(const vector<P>& s) {
 	tie(ra, A) = rec({all(s) - half});
 	tie(B, rb) = rec({sz(s) - half + all(s)});
 	while ((B->p.cross(H(A)) < 0 && (A = A->next())) ||
-	       (A->p.cross(H(B)) > 0 && (B = B->r()->o)));
+		   (A->p.cross(H(B)) > 0 && (B = B->r()->o)));
 	Q base = connect(B->r(), A);
 	if (A->p == ra->p) ra = base->r();
 	if (B->p == rb->p) rb = base;

@@ -16,26 +16,26 @@
 #pragma once
 
 template<class F> vi scc(const vector<vi> &adj, F f) {
-    int n = sz(adj);
-    vi val(n), comp(n, -1), z, cont;
-    int time = 0, ncomps = 0;
-    auto dfs = [&](auto &&self, int u) -> int {
-        int low = val[u] = ++time, x; z.push_back(u);
-        for (auto e : adj[u]) if (comp[e] < 0)
-            low = min(low, val[e] ?: self(self, e));
-        if (low == val[u]) {
-            do {
-                x = z.back(); z.pop_back();
-                comp[x] = ncomps;
-                cont.push_back(x);
-            } while (x != u);
-            f(cont); cont.clear();
-            ncomps++;
-        }
-        return val[u] = low;
-    };
-    rep(i, 0, n) {
-        if (comp[i] < 0) dfs(dfs, i);
-    }
-    return comp;
+	int n = sz(adj);
+	vi val(n), comp(n, -1), z, cont;
+	int time = 0, ncomps = 0;
+	auto dfs = [&](auto &&self, int u) -> int {
+		int low = val[u] = ++time, x; z.push_back(u);
+		for (auto e : adj[u]) if (comp[e] < 0)
+			low = min(low, val[e] ?: self(self, e));
+		if (low == val[u]) {
+			do {
+				x = z.back(); z.pop_back();
+				comp[x] = ncomps;
+				cont.push_back(x);
+			} while (x != u);
+			f(cont); cont.clear();
+			ncomps++;
+		}
+		return val[u] = low;
+	};
+	rep(i, 0, n) {
+		if (comp[i] < 0) dfs(dfs, i);
+	}
+	return comp;
 }

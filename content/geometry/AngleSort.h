@@ -14,8 +14,8 @@
 
 template<class P>
 void anglesort(vector<P> &v, P p=P(0, 0)) {
-    sort(all(v), [p](P a, P b) {
-        a = a - p, b = b - p;
-        return a.half() == b.half() ? a.cross(b) > 0 : a.half() < b.half();
-    });
+	sort(all(v), [p](P a, P b) {
+		a = a - p, b = b - p;
+		return a.half() == b.half() ? a.cross(b) > 0 : a.half() < b.half();
+	});
 }

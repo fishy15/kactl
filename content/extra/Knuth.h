@@ -15,21 +15,21 @@
 
 template<class C>
 int solve(int n, C c) {
-    vector dp(n, vi(n));
-    auto opt = dp;
-    rep(i, 0, n) opt[i][i] = i; // initialize dp[i][i] here
-    for (int i = n-2; i >= 0; i--) {
-        rep(j, i+1, n) {
-            int mn = INT_MAX;
-            int cost = C(i, j);
-            for (int k = opt[i][j-1]; k <= min(j-1, opt[i+1][j]); k++) {
-                if (mn >= dp[i][k] + dp[k+1][j] + cost) {
-                    opt[i][j] = k; 
-                    mn = dp[i][k] + dp[k+1][j] + cost; 
-                }
-            }
-            dp[i][j] = mn; 
-        }
-    }
-    return dp[0][n-1];
+	vector dp(n, vi(n));
+	auto opt = dp;
+	rep(i, 0, n) opt[i][i] = i; // initialize dp[i][i] here
+	for (int i = n-2; i >= 0; i--) {
+		rep(j, i+1, n) {
+			int mn = INT_MAX;
+			int cost = C(i, j);
+			for (int k = opt[i][j-1]; k <= min(j-1, opt[i+1][j]); k++) {
+				if (mn >= dp[i][k] + dp[k+1][j] + cost) {
+					opt[i][j] = k; 
+					mn = dp[i][k] + dp[k+1][j] + cost; 
+				}
+			}
+			dp[i][j] = mn; 
+		}
+	}
+	return dp[0][n-1];
 }

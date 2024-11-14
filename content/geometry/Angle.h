@@ -30,7 +30,7 @@ struct Angle {
 bool operator<(Angle a, Angle b) {
 	// add a.dist2() and b.dist2() to also compare distances
 	return make_tuple(a.t, a.half(), a.y * (ll)b.x) <
-	       make_tuple(b.t, b.half(), a.x * (ll)b.y);
+		   make_tuple(b.t, b.half(), a.x * (ll)b.y);
 }
 
 // Given two points, this calculates the smallest angle between
@@ -38,7 +38,7 @@ bool operator<(Angle a, Angle b) {
 pair<Angle, Angle> segmentAngles(Angle a, Angle b) {
 	if (b < a) swap(a, b);
 	return (b < a.t180() ?
-	        make_pair(a, b) : make_pair(b, a.t360()));
+			make_pair(a, b) : make_pair(b, a.t360()));
 }
 Angle operator+(Angle a, Angle b) { // point a + vector b
 	Angle r(a.x + b.x, a.y + b.y, a.t);
