@@ -13,6 +13,12 @@
 	\kactlimport{LineProjectionReflection.h}
 	\kactlimport{Angle.h}
 
+    Equation of line $Ax + By + C = 0$
+        from two points $(x_1, y_1)$ and $(x_2, y_2)$:
+        $A = y_1 - y_2$,
+        $B = x_2 - x_1$,
+        and $C = x_1y_2 - y_1x_2$.
+
 \section{Circles}
 	\kactlimport{CircleIntersection.h}
 	\kactlimport{CircleTangents.h}
@@ -45,3 +51,15 @@
 	\kactlimport{Point3D.h}
 	\kactlimport{3dHull.h}
 	\kactlimport{sphericalDistance.h}
+	\kactlimport{SegmentDistance3D.h}
+	\kactlimport{PointToFace.h}
+
+    To project points onto a plane
+        and map plane to $xy$-plane,
+        project point onto the plane,
+        use normalized $(B - A)$ and $(C - A)$ as unit vectors,
+        and find projected point as linear combination of basis vectors on $xy$-plane.
+    $(B - A)$ maps to $(1, 0)$,
+        $(C - A)$ maps to $(\cos \theta, \sin \theta)$,
+        where $\theta$ is the angle between $B - A$ and $C - A$.
+    
