@@ -2,13 +2,8 @@
 
 \section{Permutations}
 	\subsection{Factorial}
-		% \import{factorial.tex}
 		\kactlimport{IntPerm.h}
 
-	% \subsection{Cycles}
-	% 	Let $g_S(n)$ be the number of $n$-permutations whose cycle lengths all belong to the set $S$. Then
-	% 	$$\sum_{n=0} ^\infty g_S(n) \frac{x^n}{n!} = \exp\left(\sum_{n\in S} \frac{x^n} {n} \right)$$
-	%
 	\subsection{Derangements}
 		Permutations of a set such that none of the elements appear in their original position.
 		\[ \mkern-2mu D(n) = (n-1)(D(n-1)+D(n-2)) = n D(n-1)+(-1)^n = \left\lfloor\frac{n!}{e}\right\rceil \]
@@ -36,9 +31,6 @@
 
 	\subsection{Lucas' Theorem}
 		Let $n,m$ be non-negative integers and $p$ a prime. Write $n=n_kp^k+...+n_1p+n_0$ and $m=m_kp^k+...+m_1p+m_0$. Then $\binom{n}{m} \equiv \prod_{i=0}^k\binom{n_i}{m_i} \pmod{p}$.
-
-	\subsection{Binomials}
-		% \kactlimport{multinomial.h}
 
 \section{General purpose numbers}
 	\subsection{Bernoulli numbers}
