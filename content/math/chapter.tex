@@ -10,6 +10,22 @@
 
 \[x_i = \frac{\det A_i'}{\det A} \]
 
+\section{Trigonometry}
+\begin{align*}
+\sin(v+w)&{}=\sin v\cos w+\cos v\sin w\\
+\cos(v+w)&{}=\cos v\cos w-\sin v\sin w\\
+\tan(v+w)&{}=\dfrac{\tan v+\tan w}{1-\tan v\tan w}\\
+\sin v+\sin w&{}=2\sin\dfrac{v+w}{2}\cos\dfrac{v-w}{2}\\
+\cos v+\cos w&{}=2\cos\dfrac{v+w}{2}\cos\dfrac{v-w}{2}
+\end{align*}
+\[ (V+W)\tan(v-w)/2{}=(V-W)\tan(v+w)/2 \]
+where $V, W$ are lengths of sides opposite angles $v, w$.
+\begin{align*}
+	a\cos x+b\sin x&=r\cos(x-\phi)\\
+	a\sin x+b\cos x&=r\sin(x+\phi)
+\end{align*}
+where $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
+
 \section{Geometry}
 
 \subsection{Triangles}
@@ -20,6 +36,15 @@ Length of bisector (divides angles in two): $s_a=\sqrt{bc\left[1-\left(\dfrac{a}
 Law of sines: $\dfrac{\sin\alpha}{a}=\dfrac{\sin\beta}{b}=\dfrac{\sin\gamma}{c}=\dfrac{1}{2R}$\\
 Law of cosines: $a^2=b^2+c^2-2bc\cos\alpha$\\
 Law of tangents: $\dfrac{a+b}{a-b}=\dfrac{\tan\dfrac{\alpha+\beta}{2}}{\tan\dfrac{\alpha-\beta}{2}}$\\
+
+ \subsection{Quadrilaterals}
+ With side lengths $a,b,c,d$, diagonals $e, f$, diagonals angle $\theta$, area $A$ and
+ magic flux $F=b^2+d^2-a^2-c^2$:
+
+ \[ 4A = 2ef \cdot \sin\theta = F\tan\theta = \sqrt{4e^2f^2-F^2} \]
+
+  For cyclic quadrilaterals the sum of opposite angles is $180^\circ$,
+ $ef = ac + bd$, and $A = \sqrt{(p-a)(p-b)(p-c)(p-d)}$.
 
 \subsection{Spherical coordinates}
 \begin{center}
