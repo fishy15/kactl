@@ -9,3 +9,25 @@
 \kactlimport{Hashing.h}
 \kactlimport{AhoCorasick.h}
 \kactlimport{SuffixAutomaton.h}
+
+\subsection{Lyndon Enumeration}
+
+\kactlimport{Duval.h}
+
+$s$ is a Lyndon word $\iff$ $s$ is strictly smaller than all of its proper suffixes $\iff$ $s$ is strictly smaller than all of its nontrivial rotations
+
+Lyndon factorization is the unique set of $s = w_1 + ... + w_k$ such that $w$ is non-increasing and each $w_i$ is a Lyndon word
+
+$w_k$ is the smallest suffix of $s$ (different from smallest rotation)
+
+\subsection{Run Enumeration}
+
+A run is a tuple $(l, r, p)$ where $p$ is the (partial) period of $s[l, r]$ and $[l, r]$ is maximal
+
+A string of length $n$ has at most $n$ runs
+
+Sum of $(r - l) / p$ is at most $3n$
+
+Number of two-repeats is at most $n \log n$
+
+\kactlimport{RunEnumeration.h}
