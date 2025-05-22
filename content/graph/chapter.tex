@@ -7,6 +7,25 @@
 	\kactlimport{GomoryHu.h}
 	\kactlimport{FlowWithDemands.h}
 
+\subsection{Flow Notes}
+    K\H{o}nig's Theorem: For bipartite graph, $|\text{minimum node cover}| = |\text{maximum matching}|$
+
+    Nodes not in a minimum node cover form a maximum independent set
+
+    Node-disjoint Path Cover: Each node belongs to exactly one path
+    \begin{itemize}
+     \setlength\itemsep{-1em}
+     \item $\{a_1, \dots, a_n, b_1, \dots b_n\}$ where $(a_u \to b_v)$ exists for each edges $(u \to v)$ in DAG $G$
+    \end{itemize}
+
+    (General) Path Cover: Each node belongs to at least one path
+    \begin{itemize}
+     \setlength\itemsep{-1em}
+     \item Same construction as node-disjoint but with transitive closure edges
+    \end{itemize}
+
+    Dilworth's Theorem: In a DAG, $|\text{minimum general path cover}| = |\text{maximum antichain}|$
+
 \section{Matching}
 	\kactlimport{hopcroftKarp.h}
 	\kactlimport{DFSMatching.h}
@@ -14,6 +33,35 @@
 	\kactlimport{WeightedMatching.h}
 	\kactlimport{GeneralMatching.h}
 	\kactlimport{MatroidIntersection.h}
+
+\subsection{Matroid Notes}
+    $\text{rank}(A) + \text{rank}(B) \geq \text{rank}(A \cup B) + \text{rank}(A \cap B)$
+
+    Matroid Intersection steps:
+    \begin{itemize}
+     \setlength\itemsep{-1em}
+     \item Build exchange graph $D_{M_1, M_2}(S)$
+     - Find ``free to include'' sets $Y_1$ and $Y_2$
+     - Find augmenting path $P$ \textbf{without shortcuts (BFS)} from an element in $Y_1$ to an element in $Y_2$
+     - Alternate inclusion into $S$ of all element in $P$
+    \end{itemize}
+
+    Exchange Graph construction:
+    \begin{itemize}
+     \setlength\itemsep{-1em}
+     \item Left side contains nodes in $S$, right side contains nodes not in $S$
+     \item Edge $(x \to y)$ where $x \in S$ and $y \notin S$ exists iff removing $S \setminus \{x\} \cup \{y\}$ is independent in $M_1$
+     \item Edge $(x \gets y)$ where $x \in S$ and $y \notin S$ exists iff removing $S \setminus \{x\} \cup \{y\}$ is independent in $M_2$
+     \item $y \in Y_1$ iff $S \cup \{y\}$ is independent in $M_1$
+     \item $y \in Y_2$ iff $S \cup \{y\}$ is independent in $M_2$
+    \end{itemize}
+
+     Weighted Matroid Intersection:
+    \begin{itemize}
+     \setlength\itemsep{-1em}
+      \item Assign weights to \textbf{nodes} ($w(x)$ for $x \in S$ and $-w(x)$ o.w.)
+      \item Find shortest augmenting path first by sum of weights, then by \# of edges
+    \end{itemize}
 
 \section{DFS algorithms}
 	\kactlimport{SCC.h}
